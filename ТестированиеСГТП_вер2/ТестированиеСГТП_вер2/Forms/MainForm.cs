@@ -61,7 +61,7 @@ namespace ТестированиеСГТП_вер2
 
         }
 
-
+        
         private void LoadListTests()
         {
 
@@ -231,6 +231,8 @@ namespace ТестированиеСГТП_вер2
 
         private void экспортироватьВыбранныйТестВWordToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (ComboTests.SelectedIndex == -1) return;
+
             ClassExport CE = new ClassExport();
             this.UseWaitCursor = true;
             CE.ExportToWord(((ComboType)ComboTests.SelectedItem).ID_Item.ToString(), ((ComboType)ComboTests.SelectedItem).Name_Item);
