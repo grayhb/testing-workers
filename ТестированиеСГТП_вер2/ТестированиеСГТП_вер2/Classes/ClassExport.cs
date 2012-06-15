@@ -242,6 +242,12 @@ namespace ТестированиеСГТП_вер2
                     doc.Tables[1].Columns[MaxAnsw + 3].Borders[Microsoft.Office.Interop.Word.WdBorderType.wdBorderHorizontal].LineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleNone;
                 }
 
+                //колонтитул
+                oWord.ActiveWindow.View.SplitSpecial = Word.WdSpecialPane.wdPaneCurrentPageFooter;
+                oWord.Selection.Fields.Add (oWord.Selection.Range, Microsoft.Office.Interop.Word.WdFieldType.wdFieldPage);
+                oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                if (oWord.ActiveWindow.Panes.Count == 2 ) oWord.ActiveWindow.Panes[2].Close();
+    
 
                 doc.Paragraphs[1].Range.Select();
                 oWord.Selection.MoveLeft(Microsoft.Office.Interop.Word.WdUnits.wdCharacter, 1);
