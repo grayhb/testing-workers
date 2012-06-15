@@ -35,6 +35,8 @@
             this.редактироватьТестToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьВыбранныйТестToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.сохранитьВыбранныйТестКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.экспортToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.экспортироватьВыбранныйТестВWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +49,7 @@
             this.NameOtdelLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FIOWorker = new System.Windows.Forms.ToolStripStatusLabel();
-            this.сохранитьВыбранныйТестКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.праваДоступаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,7 +61,8 @@
             this.операцииToolStripMenuItem,
             this.экспортToolStripMenuItem,
             this.выбратьОтделToolStripMenuItem,
-            this.результатыТестовToolStripMenuItem});
+            this.результатыТестовToolStripMenuItem,
+            this.праваДоступаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(724, 24);
@@ -106,6 +108,18 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(260, 6);
+            // 
+            // сохранитьВыбранныйТестКакToolStripMenuItem
+            // 
+            this.сохранитьВыбранныйТестКакToolStripMenuItem.Name = "сохранитьВыбранныйТестКакToolStripMenuItem";
+            this.сохранитьВыбранныйТестКакToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.сохранитьВыбранныйТестКакToolStripMenuItem.Text = "Сохранить выбранный тест как ...";
+            this.сохранитьВыбранныйТестКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВыбранныйТестКакToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(260, 6);
             // 
             // выходToolStripMenuItem
             // 
@@ -211,17 +225,12 @@
             this.FIOWorker.Size = new System.Drawing.Size(93, 17);
             this.FIOWorker.Text = "ФИО сотрудника";
             // 
-            // сохранитьВыбранныйТестКакToolStripMenuItem
+            // праваДоступаToolStripMenuItem
             // 
-            this.сохранитьВыбранныйТестКакToolStripMenuItem.Name = "сохранитьВыбранныйТестКакToolStripMenuItem";
-            this.сохранитьВыбранныйТестКакToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.сохранитьВыбранныйТестКакToolStripMenuItem.Text = "Сохранить выбранный тест как ...";
-            this.сохранитьВыбранныйТестКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВыбранныйТестКакToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(260, 6);
+            this.праваДоступаToolStripMenuItem.Name = "праваДоступаToolStripMenuItem";
+            this.праваДоступаToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.праваДоступаToolStripMenuItem.Text = "Права доступа";
+            this.праваДоступаToolStripMenuItem.Click += new System.EventHandler(this.праваДоступаToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -272,6 +281,7 @@
         private System.Windows.Forms.ToolStripMenuItem результатыТестовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьВыбранныйТестКакToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem праваДоступаToolStripMenuItem;
     }
 }
 

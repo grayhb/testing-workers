@@ -46,6 +46,7 @@ namespace ТестированиеСГТП_вер2
 
             выбратьОтделToolStripMenuItem.Visible = false;
             результатыТестовToolStripMenuItem.Visible = false;
+            праваДоступаToolStripMenuItem.Visible = false;
 
             //параметры для подключения к БД
             ClsDB.ReadCFG();
@@ -132,12 +133,55 @@ namespace ТестированиеСГТП_вер2
                 {
                     выбратьОтделToolStripMenuItem.Visible = true;
                     результатыТестовToolStripMenuItem.Visible = true;
+                    праваДоступаToolStripMenuItem.Visible = true;
+                }
+
+                //блокировка редактирования
+                if (GetBlock() == true)
+                {
+                    добавитьТестToolStripMenuItem.Visible = false;
+                    редактироватьТестToolStripMenuItem.Visible = false;
+                    удалитьВыбранныйТестToolStripMenuItem.Visible = false;
+                    toolStripSeparator1.Visible = false;
+                    сохранитьВыбранныйТестКакToolStripMenuItem.Visible = false;
+                    экспортToolStripMenuItem.Visible = false;
+                    toolStripSeparator2.Visible = false;
                 }
             }
-
-
-            
         }
+
+        private bool GetBlock()
+        {
+            bool block = false;
+            OleDbConnection Conn = new OleDbConnection(ClassParams.ConnString);
+            OleDbCommand cmd = Conn.CreateCommand();
+            try
+            {
+                Conn.Open();
+                cmd = Conn.CreateCommand();
+                cmd.CommandText = "SELECT Block FROM TestEditBlock WHERE ID_Otdel = " + ID_Otdel;
+                OleDbDataReader result = cmd.ExecuteReader();
+                result.Read();
+                if (result.HasRows)
+                {
+                    if (result["Block"].ToString() == "1") block = true;
+                }
+                result.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show(ex.Message, "Остановка операции", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+
+            return block;
+        }
+
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -272,6 +316,14 @@ namespace ТестированиеСГТП_вер2
             if (TSA.FlSave == false) return;
 
             LoadListTests();
+
+        }
+
+        private void праваДоступаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            EditBlock EB = new EditBlock();
+            EB.ShowDialog();
 
         }
 
