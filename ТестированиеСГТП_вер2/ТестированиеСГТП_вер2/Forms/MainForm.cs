@@ -14,7 +14,7 @@ namespace ТестированиеСГТП_вер2
     {
 
         //объявляем класс для работы с БД
-        private ClassDB ClsDB = new ClassDB();
+        ClassDB ClsDB = new ClassDB();
 
         private string ID_Otdel = "";
         private string ID_Worker = "";
@@ -44,6 +44,13 @@ namespace ТестированиеСГТП_вер2
         {
             InitializeComponent();
 
+
+
+        }
+
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             выбратьОтделToolStripMenuItem.Visible = false;
             результатыТестовToolStripMenuItem.Visible = false;
             праваДоступаToolStripMenuItem.Visible = false;
@@ -59,9 +66,7 @@ namespace ТестированиеСГТП_вер2
 
             //загрузка перечня тестов
             LoadListTests();
-
         }
-
         
         private void LoadListTests()
         {
@@ -110,7 +115,6 @@ namespace ТестированиеСГТП_вер2
         //определение данных пользователя
         private void LoadPersonData(string login)
         {
-
             ID_Worker = ClsDB.GET_Field("Workers", "Workers.Login = '" + login + "'", "ID_Worker");
             FIOWorker.Text = ClsDB.GET_Field("Workers", "Workers.Login = '" + login + "'", "dbo.Workers.F_Worker + ' ' + dbo.Workers.I_Worker");
             string IDO = ClsDB.GET_Field("Workers", "Workers.Login = '" + login + "'", "ID_Otdel");
@@ -326,6 +330,8 @@ namespace ТестированиеСГТП_вер2
             EB.ShowDialog();
 
         }
+
+
 
         
     }

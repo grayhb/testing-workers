@@ -42,6 +42,7 @@
             this.экспортироватьВыбранныйТестВWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выбратьОтделToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.результатыТестовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.праваДоступаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ComboTests = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.NameOtdelLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FIOWorker = new System.Windows.Forms.ToolStripStatusLabel();
-            this.праваДоступаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -157,6 +157,13 @@
             this.результатыТестовToolStripMenuItem.Text = "Результаты тестов";
             this.результатыТестовToolStripMenuItem.Click += new System.EventHandler(this.результатыТестовToolStripMenuItem_Click);
             // 
+            // праваДоступаToolStripMenuItem
+            // 
+            this.праваДоступаToolStripMenuItem.Name = "праваДоступаToolStripMenuItem";
+            this.праваДоступаToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.праваДоступаToolStripMenuItem.Text = "Права доступа";
+            this.праваДоступаToolStripMenuItem.Click += new System.EventHandler(this.праваДоступаToolStripMenuItem_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -225,13 +232,6 @@
             this.FIOWorker.Size = new System.Drawing.Size(93, 17);
             this.FIOWorker.Text = "ФИО сотрудника";
             // 
-            // праваДоступаToolStripMenuItem
-            // 
-            this.праваДоступаToolStripMenuItem.Name = "праваДоступаToolStripMenuItem";
-            this.праваДоступаToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.праваДоступаToolStripMenuItem.Text = "Права доступа";
-            this.праваДоступаToolStripMenuItem.Click += new System.EventHandler(this.праваДоступаToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +249,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Электронная база профессиональных тестов";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
