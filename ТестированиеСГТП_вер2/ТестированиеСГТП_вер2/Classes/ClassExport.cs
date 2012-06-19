@@ -83,6 +83,8 @@ namespace ТестированиеСГТП_вер2
             //руководитель подразделения:
             Hashtable HeadO = HeadOtdel(ID_Test);
 
+
+
             int k = 0;
             string[] tmp;
             string[] Answ;
@@ -104,7 +106,6 @@ namespace ТестированиеСГТП_вер2
 
             try
             {
-
 
                 //ADDING A NEW DOCUMENT TO THE APPLICATION
                 oWordDoc = oWord.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
@@ -209,8 +210,16 @@ namespace ТестированиеСГТП_вер2
 
                 doc.Paragraphs.Add();
                 doc.Paragraphs.Add();
-                if (HeadO != null) doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["N_Post"].ToString(), HeadO["ID_Post"].ToString(), HeadO["NB_Otdel"].ToString()) + ((char)9).ToString() + HeadO["FIO"].ToString();
-                doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(10));
+                if (HeadO != null)
+                {
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["N_Post"].ToString(), HeadO["ID_Post"].ToString(), HeadO["NB_Otdel"].ToString()) + ((char)9).ToString() + HeadO["FIO"].ToString();
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(12));
+
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["UpHeadPost"].ToString(), "1", ((char)9).ToString() + HeadO["UpHeadFIO"].ToString());
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(12));
+                }
 
                 //оформление:
 
@@ -242,12 +251,26 @@ namespace ТестированиеСГТП_вер2
                     doc.Tables[1].Columns[MaxAnsw + 3].Borders[Microsoft.Office.Interop.Word.WdBorderType.wdBorderHorizontal].LineStyle = Microsoft.Office.Interop.Word.WdLineStyle.wdLineStyleNone;
                 }
 
-                //колонтитул
-                oWord.ActiveWindow.View.SplitSpecial = Word.WdSpecialPane.wdPaneCurrentPageFooter;
-                oWord.Selection.Fields.Add (oWord.Selection.Range, Microsoft.Office.Interop.Word.WdFieldType.wdFieldPage);
+                //колонтитул верхний
+                oWord.ActiveWindow.View.SplitSpecial = Word.WdSpecialPane.wdPaneCurrentPageHeader;
+                oWord.Selection.Range.Text = NameTest;
+                oWord.Selection.Range.Font.Size = 10;
+                oWord.Selection.Range.Font.Color = Word.WdColor.wdColorGray50;
                 oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+                if (oWord.ActiveWindow.Panes.Count == 2) oWord.ActiveWindow.Panes[2].Close();
+
+                //колонтитул нижний
+                oWord.ActiveWindow.View.SplitSpecial = Word.WdSpecialPane.wdPaneCurrentPageFooter;
+                oWord.Selection.Range.InsertBefore(HeadO["NB_Otdel"].ToString() + ((char)9).ToString() + ((char)9).ToString());
+                oWord.Selection.EndKey();
+                oWord.Selection.Fields.Add (oWord.Selection.Range, Microsoft.Office.Interop.Word.WdFieldType.wdFieldPage);
+                
                 if (oWord.ActiveWindow.Panes.Count == 2 ) oWord.ActiveWindow.Panes[2].Close();
-    
+
+                doc.PageSetup.TopMargin = oWord.CentimetersToPoints(2);
+                doc.PageSetup.BottomMargin = oWord.CentimetersToPoints(2);
+                doc.PageSetup.LeftMargin = oWord.CentimetersToPoints(2);
+                doc.PageSetup.RightMargin = oWord.CentimetersToPoints(1);
 
                 doc.Paragraphs[1].Range.Select();
                 oWord.Selection.MoveLeft(Microsoft.Office.Interop.Word.WdUnits.wdCharacter, 1);
@@ -546,7 +569,7 @@ namespace ТестированиеСГТП_вер2
 
             ClassDB ClsDB = new ClassDB();
 
-            string SqlStr = "SELECT dbo.Posts.N_Post, dbo.Otdels.NB_Otdel, dbo.Workers.I_Worker + ' ' + dbo.Workers.F_Worker AS FIO, dbo.Posts.ID_Post " + 
+            string SqlStr = "SELECT dbo.Posts.N_Post, dbo.Otdels.NB_Otdel, dbo.Workers.I_Worker + ' ' + dbo.Workers.F_Worker AS FIO, dbo.Posts.ID_Post, dbo.Otdels.IndOtdel " + 
                            " FROM dbo.Otdels INNER JOIN " +
                            " dbo.Posts ON dbo.Otdels.PostHeadUnit = dbo.Posts.ID_Post INNER JOIN " +
                            "dbo.Workers ON dbo.Posts.ID_Post = dbo.Workers.ID_Post AND dbo.Otdels.ID_Otdel = dbo.Workers.ID_Otdel " +
@@ -555,7 +578,28 @@ namespace ТестированиеСГТП_вер2
             Dictionary<int, Hashtable> myData = ClsDB.GET_Fields(SqlStr);
 
             if (myData.Count == 0) return null;
-            
+
+            //вышестоящий руководитель:
+            string IndOtdel = myData[1]["IndOtdel"].ToString();
+            if (IndOtdel != "")
+            {
+                IndOtdel = IndOtdel.Substring(0, 1);
+                SqlStr = "SELECT dbo.Posts.N_Post, dbo.Workers.I_Worker + ' ' + dbo.Workers.F_Worker AS FIO " +
+                               " FROM dbo.Posts INNER JOIN " +
+                               "dbo.Workers ON dbo.Posts.ID_Post = dbo.Workers.ID_Post " +
+                               " WHERE (dbo.Workers.PersonIndexDP = '" + IndOtdel + "')";
+
+                Dictionary<int, Hashtable> tmp = ClsDB.GET_Fields(SqlStr);
+
+                if (tmp.Count > 0)
+                {
+                    myData[1].Add("UpHeadPost", tmp[1]["N_Post"]);
+                    myData[1].Add("UpHeadFIO", tmp[1]["FIO"]);
+                }
+            }
+
+            //myData[1].Add("IDO", IDO);
+
             return myData[1];
 
         }
@@ -568,9 +612,6 @@ namespace ТестированиеСГТП_вер2
 
             return str;
         }
-
-
-
 
     }
 }
