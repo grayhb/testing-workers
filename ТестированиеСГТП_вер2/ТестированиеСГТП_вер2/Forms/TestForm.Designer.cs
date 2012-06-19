@@ -186,7 +186,6 @@
             this.TextQ.Name = "TextQ";
             this.TextQ.Size = new System.Drawing.Size(818, 118);
             this.TextQ.TabIndex = 0;
-            this.TextQ.Text = "label1";
             // 
             // AnswBox
             // 

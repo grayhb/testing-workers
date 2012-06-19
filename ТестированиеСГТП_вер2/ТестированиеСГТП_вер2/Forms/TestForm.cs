@@ -86,6 +86,15 @@ namespace ТестированиеСГТП_вер2
         private void Test_Load(object sender, EventArgs e)
         {
             LoadQuetsions();
+
+            if (ListButtons.Rows.Count == 0)
+            {
+                MessageBox.Show("К сожалению вопросов для тестирования не найдено.", "Остановка тестирования", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                iClose = true;
+                this.Opacity = 0;
+                Application.DoEvents();
+                Application.Exit();
+            }
         }
 
         private void ListAnsw_CellClick(object sender, DataGridViewCellEventArgs e)
