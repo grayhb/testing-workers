@@ -14,9 +14,14 @@ namespace ТестированиеСГТП_вер2
         public EditBlock()
         {
             InitializeComponent();
+            
+            this.KeyDown+=new KeyEventHandler(EditBlock_KeyDown);
         }
 
-
+        private void EditBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+        }
 
         private void EditBlock_Load(object sender, EventArgs e)
         {

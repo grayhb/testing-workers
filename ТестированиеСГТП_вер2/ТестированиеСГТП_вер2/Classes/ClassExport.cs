@@ -255,7 +255,8 @@ namespace ТестированиеСГТП_вер2
                 oWord.ActiveWindow.View.SplitSpecial = Word.WdSpecialPane.wdPaneCurrentPageHeader;
                 oWord.Selection.Range.Text = NameTest;
                 oWord.Selection.Range.Font.Size = 10;
-                oWord.Selection.Range.Font.Color = Word.WdColor.wdColorGray50;
+                oWord.Selection.Range.Font.Color = Word.WdColor.wdColorGray90;
+                //oWord.Selection.Range.Font.ColorIndex = Word.WdColorIndex.wdGray25;
                 oWord.Selection.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
                 if (oWord.ActiveWindow.Panes.Count == 2) oWord.ActiveWindow.Panes[2].Close();
 

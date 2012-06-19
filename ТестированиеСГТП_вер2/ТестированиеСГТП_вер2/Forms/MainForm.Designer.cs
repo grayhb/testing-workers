@@ -246,7 +246,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Электронная база профессиональных тестов";
             this.Load += new System.EventHandler(this.MainForm_Load);

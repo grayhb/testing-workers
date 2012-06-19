@@ -21,11 +21,17 @@ namespace ТестированиеСГТП_вер2
         public TestReport()
         {
             InitializeComponent();
+            this.KeyDown +=new KeyEventHandler(TestReport_KeyDown);
             this.Shown +=new EventHandler(TestReport_Shown);
             this.ResizeBegin +=new EventHandler(TestReport_ResizeBegin);
             this.SizeChanged += new EventHandler(TestReport_SizeChanged);
             this.MaximumSizeChanged += new EventHandler(TestReport_SizeChanged);
             LoadReports();
+        }
+
+        private void TestReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
         }
 
         private void TestReport_SizeChanged(object sender, EventArgs e)
