@@ -202,7 +202,19 @@ namespace ТестированиеСГТП_вер2
                     if (i > CountRow) { i = 2; k = MaxAnsw + 5; }
 
                     doc.Tables[1].Rows[i].Cells[k - 1].Range.Text = j.ToString();
-                    doc.Tables[1].Rows[i].Cells[k + Convert.ToInt32(str)].Range.Text = "+";
+                    if (str.Length == 1)
+                    {
+                        doc.Tables[1].Rows[i].Cells[k + Convert.ToInt32(str)].Range.Text = "+";
+                    }
+                    else
+                    {
+                        string[] ArrRight = str.Split(";".ToCharArray());
+                        foreach (string subRight in ArrRight)
+                        {
+                            doc.Tables[1].Rows[i].Cells[k + Convert.ToInt32(subRight)].Range.Text = "+";
+                        }
+                    }
+
 
 
                     i++; j++;
@@ -212,13 +224,12 @@ namespace ТестированиеСГТП_вер2
                 doc.Paragraphs.Add();
                 if (HeadO != null)
                 {
-                    doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["N_Post"].ToString(), HeadO["ID_Post"].ToString(), HeadO["NB_Otdel"].ToString()) + ((char)9).ToString() + HeadO["FIO"].ToString();
-                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(12));
-
-                    doc.Paragraphs.Add();
-                    doc.Paragraphs.Add();
                     doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["UpHeadPost"].ToString(), "1", ((char)9).ToString() + HeadO["UpHeadFIO"].ToString());
-                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(12));
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(14));
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs.Add();
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.Text = GetPostHead(HeadO["N_Post"].ToString(), HeadO["ID_Post"].ToString(), HeadO["NB_Otdel"].ToString()) + ((char)9).ToString() + HeadO["FIO"].ToString();
+                    doc.Paragraphs[doc.Paragraphs.Count].Range.ParagraphFormat.TabStops.Add(oWord.CentimetersToPoints(14));
                 }
 
                 //оформление:
@@ -283,6 +294,7 @@ namespace ТестированиеСГТП_вер2
             {
                 MessageBox.Show(string.Format("Ошибка: Не удалось получить необходимые данные из базы данных.\n\n {0}", ex.Message), "Остановка операции", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 oWord.Visible = true;
+                oWord.ScreenUpdating = true;
                 return;
             }
 
