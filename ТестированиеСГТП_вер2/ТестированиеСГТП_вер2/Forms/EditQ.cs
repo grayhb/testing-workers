@@ -99,21 +99,10 @@ namespace ТестированиеСГТП_вер2
         {
 
             Console.WriteLine(Question.IndexOf(".", 1).ToString());
-            if (Question.IndexOf(".", 1) > 1 && Question.IndexOf(".", 1) < 3)
+            if (Question.IndexOf(".", 1) >= 1 && Question.IndexOf(".", 1) <= 3)
             {
-                Question = Question.Substring(Question.IndexOf(".", 1) + 1, Question.Length - (Question.IndexOf(".", 1) + 1));
+                Question = Question.Substring(Question.IndexOf(".", 1) + 1, Question.Length - (Question.IndexOf(".", 1) + 1)).Trim();
             }
-
-            /*
-            if (Question.IndexOf(".", 1) != -1) 
-                Question.Substring(Question.IndexOf(".", 1) + 1, Question.Length - Question.IndexOf(".") - 1).Trim();
-
-            if (Question.IndexOf(".", 2) != -1)
-                Question.Substring(Question.IndexOf(".", 2) + 1, Question.Length - Question.IndexOf(".") - 1).Trim();
-
-            if (Question.IndexOf(".", 3) != -1)
-                Question.Substring(Question.IndexOf(".", 3) + 1, Question.Length - Question.IndexOf(".") - 1).Trim();
-            */
 
             return Question;
         }
@@ -312,7 +301,7 @@ namespace ТестированиеСГТП_вер2
 
             if (ArrQ.Length < 2) return;
 
-            NameQ.Text = ArrQ[0];
+            NameQ.Text = CheckQuest(ArrQ[0]);
 
             for (int i = 1; i <= ArrQ.Length - 1; i++)
             {
