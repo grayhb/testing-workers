@@ -314,6 +314,14 @@ namespace ТестированиеСГТП_вер2
 
             LoadQuetsions();
 
+            //выделяем последний добавленный вопрос
+            if (DGVList.Rows.Count > 0)
+            {
+                DGVList.ClearSelection();
+                DGVList.Rows[DGVList.Rows.Count-1].Selected = true;
+                DGVList.Rows[DGVList.Rows.Count - 1].Cells[0].Selected = true;
+            }
+
         }
 
         private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
