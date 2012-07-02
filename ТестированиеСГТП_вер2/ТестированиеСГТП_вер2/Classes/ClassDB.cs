@@ -291,7 +291,7 @@ namespace ТестированиеСГТП_вер2
     {
         //настройки локальной бд
         public static string ConnString = @"provider=Microsoft.Jet.OLEDB.4.0;data source=//10.105.21.69/test/DB.mde;Jet OLEDB:Database Password=gfhjkzytn;";
-        //public static string ConnString = @"provider=Microsoft.Jet.OLEDB.4.0;data source=D://DB.mde;"; //Jet OLEDB:Database Password=gfhjkzytn;";
+        //public static string ConnString = @"provider=Microsoft.Jet.OLEDB.4.0;data source=D://test_DB.mde;Jet OLEDB:Database Password=gfhjkzytn;";
 
         public static string Mask = "dgk";      //маска
 

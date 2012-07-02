@@ -331,6 +331,12 @@ namespace ТестированиеСГТП_вер2
 
         }
 
+        private void sSPDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopyTest CT = new CopyTest();
+            CT.ShowDialog();
+        }
+
 
 
         

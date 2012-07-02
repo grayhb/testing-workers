@@ -50,6 +50,7 @@
             this.NameOtdelLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FIOWorker = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sSPDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -62,7 +63,8 @@
             this.экспортToolStripMenuItem,
             this.выбратьОтделToolStripMenuItem,
             this.результатыТестовToolStripMenuItem,
-            this.праваДоступаToolStripMenuItem});
+            this.праваДоступаToolStripMenuItem,
+            this.sSPDToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(724, 24);
@@ -232,6 +234,14 @@
             this.FIOWorker.Size = new System.Drawing.Size(93, 17);
             this.FIOWorker.Text = "ФИО сотрудника";
             // 
+            // sSPDToolStripMenuItem
+            // 
+            this.sSPDToolStripMenuItem.Name = "sSPDToolStripMenuItem";
+            this.sSPDToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.sSPDToolStripMenuItem.Text = "SSPD";
+            this.sSPDToolStripMenuItem.Visible = false;
+            this.sSPDToolStripMenuItem.Click += new System.EventHandler(this.sSPDToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +292,7 @@
         private System.Windows.Forms.ToolStripMenuItem сохранитьВыбранныйТестКакToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem праваДоступаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sSPDToolStripMenuItem;
     }
 }
 
